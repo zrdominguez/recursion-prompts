@@ -7,17 +7,52 @@
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
 let factorial = function(n) {
+  if(n == 0) return 1
+  else if(n == 1) return 1;
+  else if (n < 0) return null;
+  return n * factorial(n-1);
 };
 
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 let sum = function(array) {
+  if(array.length === 0) return 0;
+  return array[0] + sum(array.slice(1));
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 let arraySum = function(array) {
+  let sum = 0;
+  if(array.length == 0) return 0;
+  for(const el of array){
+    if(Array.isArray(el)) sum += arraySum(el);
+    else sum+=el;
+  }
+  return sum
 };
+
+console.log(arraySum([1,[2,3],[[4]],5])); // 15
+
+  // let sum = 0;
+
+  // for (let element of array) {
+
+  //     if(Array.isArray(element)) {
+
+  //         sum += arraySum(element);
+
+  //     } else {
+
+  //         sum += element;
+
+  //     }
+
+  //     }
+
+  //     return sum;
+
+  // }
 
 // 4. Check if a number is even.
 // isEven(2) // true
@@ -52,7 +87,7 @@ let powerOfTwo = function(n) {
 };
 
 // 9. Write a function that reverses a string.
-// reverse("hello"); // olleh 
+// reverse("hello"); // olleh
 let reverse = function(string) {
 };
 
