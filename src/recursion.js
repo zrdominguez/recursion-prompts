@@ -32,44 +32,56 @@ let arraySum = function(array) {
   return sum
 };
 
-console.log(arraySum([1,[2,3],[[4]],5])); // 15
-
-  // let sum = 0;
-
-  // for (let element of array) {
-
-  //     if(Array.isArray(element)) {
-
-  //         sum += arraySum(element);
-
-  //     } else {
-
-  //         sum += element;
-
-  //     }
-
-  //     }
-
-  //     return sum;
-
-  // }
-
 // 4. Check if a number is even.
 // isEven(2) // true
 // isEven(9) // false
 let isEven = function(n) {
+  n = Math.abs(n);
+  if(n==0) return true;
+  else if(n < 2) return false;
+  return isEven(n-2);
 };
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 let sumBelow = function(n) {
+  if(n == 0) return 0;
+  n = n < 0 ? n + 1 : n - 1;
+  return  n + sumBelow(n);
 };
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 let range = function(x, y) {
+  if(x < y){
+    if(x !== y) x += 1
+    if(x === (y-1))  return [x]
+  }else{
+    if(x !== y) x -=1
+    if(x === (y+1)) return [x]
+  }
+  if (x === y) return [];
+  let arr = [x];
+  return arr.concat(range(x, y));
 };
+
+// if (x === y || x === y - 1 || x == y + 1) {
+
+// return [];
+
+// } else if (x < y) {
+
+//     return [x + 1, ...range(x + 1, y)]
+
+// }
+
+// else {
+
+//     return [x - 1, ...range(x - 1, y)]
+
+// }
+
 
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
@@ -77,6 +89,8 @@ let range = function(x, y) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 let exponent = function(base, exp) {
+  if (exp == 0) return 1;
+  return exp > 0 ? (base * exponent(base, exp-1)) : ((1/base) * exponent(base, exp+1).toFixed(4))
 };
 
 // 8. Determine if a number is a power of two.
@@ -84,11 +98,16 @@ let exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 let powerOfTwo = function(n) {
+  if(n === 1 || n === 2) return true
+  else if(!n%2) return false;
+  return (powerOfTwo(n/2))
 };
 
 // 9. Write a function that reverses a string.
 // reverse("hello"); // olleh
 let reverse = function(string) {
+  if(string.length === 0) return string.slice(1);
+  return reverse(string.slice(1))+ string[0];
 };
 
 // 10. Write a function that determines if a string is a palindrome.
@@ -96,6 +115,7 @@ let reverse = function(string) {
 // palindrome("rotor") // true
 // palindrome("wow") // true
 let palindrome = function(string) {
+
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
