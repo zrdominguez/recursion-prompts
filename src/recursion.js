@@ -115,8 +115,14 @@ let reverse = function(string) {
 // palindrome("rotor") // true
 // palindrome("wow") // true
 let palindrome = function(string) {
-
+  let copy = string.toLowerCase();
+  if (copy.length === 1) return true;
+  else if(copy.length === 2) return copy[0] === copy[1];
+  else if(copy[0] == copy.slice(-1)) return palindrome(copy.slice(1,-1))
+  return false;
 };
+
+console.log(palindrome('wow'));
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
